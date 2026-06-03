@@ -1,0 +1,76 @@
+9_lex_bozon - finalni Qiskit QCBM Higgs/Yukawa nad 1D lex nizom
+========================================================================
+
+KORAK 1: lex niz (bijekcija kombinacija u 1..C(39,7))
+
+  CSV:                  /Users/4c/Desktop/GHQ/data/loto7lex_4626_k44.csv
+  Validnih lex tacaka:   4626
+  Preskoceno redova:     1
+  C(39,7):              15,380,937
+  Zadnji lex:            2,770,100
+  Zadnji prirastaj dX:   673,249
+
+KORAK 2: Kvantni bozon model nad lex PRIRASTAJIMA (dX)
+
+  Model:                QCBM / parametrizovano kvantno kolo
+  Cilj:                 raspodela prirastaja dX = lex[t]-lex[t-1]
+  Predikcija:           sledeci_lex = zadnji_lex + dekodirani dX
+  Loss:                 multi-MMD + 0.25*quantile + 0.10*bit-MSE
+  Recency:              exponential weights nad svim prirastajima
+  Qubita:               25 = 5 blokova x 5
+  Layers:               4
+  Parametara:           492
+  Conditional seed:     zadnji prirastaj dX enkodovan X-gateovima (momentum)
+  Higgs field:          peti 5q blok kao globalno polje
+  Symmetry breaking:    +/- Higgs VEV u inicijalizaciji i slojevima
+  Goldstone ring:       CRZ prsten unutar Higgs bloka
+  Yukawa coupling:      Higgs -> materija preko CRY+CRZ
+  Backreaction:         materija -> Higgs preko CRY+CRZ
+  Kandidati:            score po lex-klasteru, filter placeholder + vec izvuceno
+  SPSA iteracija:        100
+  train shots:           4096
+  final shots:           150000
+  initial loss:          0.10400460
+  final loss:            0.03594263
+  best loss:             0.02481954
+  final multi-MMD:       0.02886705
+  final quantile loss:   0.00700217
+  final bit MSE:         0.05325035
+
+Filter finalnih kandidata:
+  out-of-range shots:    59980
+  placeholder shots:     0
+  vec izvuceni shots:    28
+
+PREDIKCIJA: NEXT / 9_lex_bozon
+========================================================================
+
+Glavna kvantna prognoza:
+  sampled count:         28
+  cluster count:         3671
+  cluster score:         0.00019124
+  sampled prob:          0.00018667
+  pred. lex:             2,938,097
+  lex-region:            D2 (19.10%)
+  pred. kombinacija:     (2, 3, 8, 9, 15, 17, 34)
+  vec izvucena ranije:   NE (filtrirano)
+
+Top kvantni kandidati (cele kombinacije / lex-klasteri):
+  rang    count   cluster        score           lex  region       kombinacija                   
+  1          28      3671   0.00019124     2,938,097  D2 (19.10%)  (2, 3, 8, 9, 15, 17, 34)      
+  2          25      3671   0.00017075     2,938,089  D2 (19.10%)  (2, 3, 8, 9, 15, 17, 26)      
+  3          25      2325   0.00016925     3,403,723  D3 (22.13%)  (2, 4, 14, 19, 23, 29, 37)    
+  4          23      5176   0.00015862     3,869,364  D3 (25.16%)  (2, 6, 11, 16, 18, 27, 37)    
+  5          23      3671   0.00015709     2,938,104  D2 (19.10%)  (2, 3, 8, 9, 15, 18, 20)      
+  6          22      5395   0.00015194     3,884,378  D3 (25.25%)  (2, 6, 12, 14, 29, 33, 35)    
+  7          22      3552   0.00015014     2,922,607  D2 (19.00%)  (2, 3, 7, 14, 20, 27, 34)     
+  8          22      2398   0.00014901     3,418,744  D3 (22.23%)  (2, 4, 15, 25, 31, 38, 39)    
+  9          21      2895   0.00014270     4,860,707  D4 (31.60%)  (2, 14, 15, 19, 26, 32, 37)   
+  10         21      1935   0.00014181     5,101,034  D4 (33.16%)  (3, 4, 5, 9, 11, 23, 33)      
+  11         20      3555   0.00013649     2,923,069  D2 (19.00%)  (2, 3, 7, 14, 23, 33, 36)     
+  12         20      3345   0.00013631     4,350,011  D3 (28.28%)  (2, 9, 10, 11, 14, 22, 26)    
+
+Vreme treninga:       0:23:33 (1412.9 s)
+Ukupno vreme:         0:25:25 (1524.7 s)
+PNG:                  /Users/4c/Desktop/GHQ/KarlWeierstrass/9_lex_bozon.png
+
